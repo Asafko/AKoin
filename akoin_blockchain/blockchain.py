@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import List, Optional
 
 from .account import Account
+from .aux_data_structures import MerkleTree
 from .helper_functions import get_logger
 from .transaction import Transaction
 
@@ -27,6 +28,9 @@ class Blockchain:
             
             self.index = index
             self.transactions = transactions
+            self.merkle_tree = MerkleTree.make_tree([t.serialized for t 
+                                                     in self.transactions])
+            self.merkle_root = self.merkle_tree[-1][0]
             self.timestamp = str(datetime.now())
             self.unix_timestamp = time.time()
             self.previous_hash = previous_hash
@@ -43,13 +47,15 @@ class Blockchain:
             return json.dumps(self.as_object(), sort_keys=True)
         
         def as_object(self, with_hash: Optional[bool]=True) -> dict:
+            serialized_transactions = [t.serialized for t in self.transactions]
             obj = {'index': self.index,
                    'timestamp': self.timestamp,
                    'unix_timestamp': self.unix_timestamp,
                    'previous_hash': self.previous_hash,
                    'nonce': self.nonce,
                    'miner': self.miner,
-                   'transactions': [t.serialized for t in self.transactions]}
+                   'transactions': serialized_transactions,
+                   'merkle_tree': self.merkle_tree}
             if with_hash:
                 obj['hashcode'] = self.hashcode
             
