@@ -11,8 +11,8 @@ behavior if replicated extensively.
 
 ## How this works
 
-In the AKoin blockchain there is no mining bonuses, The initial currency supply (which is mined
-to the genesis block) is all the AKoins the chain will hold. Each AKoin block contains a limited
+In the AKoin blockchain there are no mining bonuses, The initial currency supply (which is transacted
+to the genesis block miner) is all the AKoins the chain will hold. Each AKoin block contains a limited
 number of transactions and each transaction must specify the sender address, receiver address,
 the amount to transfer and the fee for the miners. Mining a block will naturally select the top
 transactions sorted by the fees (the highest fees would get inserted into the blocks transactions),
@@ -79,7 +79,7 @@ coming Web 3.0 developers learn the inner workings of blockchains and facilitate
 #### This implementation should not be used for anything else. AKoins are also worthless. The AKoin blockchain is by no means "Production" suitable!
 
 ## Contributing
-While I never intended the work done here to be extended, I am open for any improvements and suggestions.
+While I never intended the work done here to be extended, I am open to any improvements and suggestions.
 Please feel free to contact me before or after making a pull request.
 
 ## License
